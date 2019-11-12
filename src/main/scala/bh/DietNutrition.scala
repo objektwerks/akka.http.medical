@@ -1,9 +1,11 @@
 package bh
 
-case class DietNutrition(patientId: Long, encounterId: Long, status: String, diet: String)
+case class DietNutrition(patientId: Int, encounterId: Int, status: String, diet: String) {
+  def isValid: Boolean = patientId > 0 && encounterId > 0 && status.nonEmpty && diet.nonEmpty
+}
 
 object DietNutrition {
   import upickle.default._
 
-  implicit val nowRW: ReadWriter[DietNutrition] = macroRW
+  implicit val dietNutritionRW: ReadWriter[DietNutrition] = macroRW
 }

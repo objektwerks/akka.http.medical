@@ -1,10 +1,13 @@
 package bh
 
-import akka.event.LoggingAdapter
 import com.typesafe.config.Config
+import org.slf4j.LoggerFactory
 import scalikejdbc.ConnectionPool
 
-class Store(conf: Config, logger: LoggingAdapter) {
+import scala.concurrent.Future
+
+class Store(conf: Config) {
+  private val logger = LoggerFactory.getLogger(getClass)
   private val driver = conf.getString("db.driver")
   private val url = conf.getString("db.url")
   private val user = conf.getString("db.user")
@@ -12,11 +15,11 @@ class Store(conf: Config, logger: LoggingAdapter) {
 
   Class.forName(driver)
   ConnectionPool.singleton(url, user, password)
-  logger.info("*** Oracle: Loaded driver and created connection.")
+  logger.info(s"*** Store: Connected to Oracle store ( $url ).")
 
-  def ping:Int = 1
+  def select(patiendId: Int, encounterId: Int): Future[DietNutrition] = Future.successful(DietNutrition(patiendId, encounterId, "status", "diet"))
 }
 
 object Store {
-  def apply(conf: Config, logger: LoggingAdapter): Store = new Store(conf, logger)
+  def apply(conf: Config): Store = new Store(conf)
 }
