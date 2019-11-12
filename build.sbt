@@ -12,6 +12,7 @@ libraryDependencies ++= {
     "com.typesafe.akka" %% "akka-stream" % akkaVersion,
     "de.heikoseeberger" %% "akka-http-upickle" % "1.29.1",
     "org.scalikejdbc" %% "scalikejdbc" % "3.4.0",
+    "com.oracle.ojdbc" % "ojdbc8" % "19.3.0.0",
     "com.lihaoyi" %% "upickle" % "0.8.0",
     "com.typesafe" % "config" % "1.3.4",
     "ch.qos.logback" % "logback-classic" % "1.2.3",
