@@ -1,6 +1,6 @@
-Akka Http
----------
->This project contains Akka Http feature tests.
+BH Rest Cerner
+--------------
+>This project Akka Http REST service to Cerner database.
 
 Test
 ----
@@ -9,4 +9,3 @@ Test
 Run
 ---
 1. sbt run
-2. Open browser to: http://localhost:7777/
