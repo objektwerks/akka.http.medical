@@ -7,9 +7,10 @@ Test
 ----
 1. sbt clean test
 
-Build
------
-
 Run
 ---
 1. sbt run
+
+Package
+-------
+1. sbt universal:packageZipTarball
