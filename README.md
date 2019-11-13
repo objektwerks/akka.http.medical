@@ -19,6 +19,7 @@ Package
 Deploy
 ------
 1. unpack bh-rest-cerner-0.1-SNAPSHOT.tgz
-2. ./bin/bh-rest-cerner
+2. chmod +x ./bin/bh-rest-cerner
+2. ./bin/bh-rest-cerner &
 3. read log at ./bin/target/*.txt
-4. shutdown with ctrl-C
+4. kill pid
