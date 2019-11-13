@@ -1,3 +1,5 @@
+enablePlugins(JavaAppPackaging)
+
 name := "bh.rest.cerner"
 organization := "bh"
 version := "0.1-SNAPSHOT"

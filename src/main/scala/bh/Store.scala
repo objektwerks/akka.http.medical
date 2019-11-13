@@ -28,7 +28,7 @@ class Store(conf: Config) {
       and CATALOG_TYPE_CD = 2511
       and PERSON_ID = $patiendId
       and ENCNTR_ID = $encounterId
-      and ACTIVE_IND = 1
+      and ACTIVE_IND = 1;
       """
       .map(rs => DietNutrition(rs.long("Patient"), rs.long("Encounter"), rs.string("Status"), rs.string("Diet")))
       .single
