@@ -13,4 +13,4 @@ Run
 
 Package
 -------
-1. sbt universal:packageZipTarball
+1. sbt universal:packageZipTarball | windows:packageBin
