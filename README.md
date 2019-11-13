@@ -13,6 +13,7 @@ Run
 
 Package
 -------
+>Using https://sbt-native-packager.readthedocs.io/en/stable/
 1. sbt universal:packageZipTarball | windows:packageBin
 
 Deploy
