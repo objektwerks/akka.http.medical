@@ -8,18 +8,19 @@ import upickle.default._
 class Router(store: Store) {
   val logger = LoggerFactory.getLogger(getClass)
 
-  val getDietNutrition = path(IntNumber / IntNumber) { (patientId, encounterId) =>
+  val getDietNutrition = path(LongNumber / LongNumber) { (patientId, encounterId) =>
     get {
-      onSuccess(store.select(patientId, encounterId)) { dietNutrition =>
-        logger.info(s"*** Router: Selected DietNutrition ( $dietNutrition ).")
-        complete(OK -> write[DietNutrition](dietNutrition))
+      onSuccess(store.findDietNutritionByPatientEncounterId(patientId, encounterId)) {
+        case Some(dietNutrition) =>
+          logger.info(s"*** getDietNutrition: $dietNutrition")
+          complete(OK -> write[DietNutrition](dietNutrition))
+        case None =>
+          logger.error(s"*** getDietNutrition: Failed { patientId: $patientId encounterId: $encounterId }")
+          complete(NotFound)
       }
     }
   }
-  val api = pathPrefix("api" / "v1" / "dietnutrition") {
-    getDietNutrition
-  }
-  val routes = api
+  val api = pathPrefix("api" / "v1" / "dietnutrition") { getDietNutrition }
 }
 
 object Router {

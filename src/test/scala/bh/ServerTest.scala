@@ -25,7 +25,7 @@ class ServerTest extends WordSpec with Matchers with ScalatestRouteTest  {
   val host = conf.getString("server.host")
   val port = conf.getInt("server.port")
   Http()
-    .bindAndHandle(router.routes, host, port)
+    .bindAndHandle(router.api, host, port)
     .map { server =>
       logger.info(s"*** ServerTest host: ${server.localAddress.toString}")
     }
@@ -34,7 +34,7 @@ class ServerTest extends WordSpec with Matchers with ScalatestRouteTest  {
 
   "DietNutritionService" should {
     "get" in {
-      Get(conf.getString("rest.url")) ~> router.routes ~> check {
+      Get(conf.getString("rest.url")) ~> router.api ~> check {
         status shouldBe StatusCodes.OK
         responseAs[DietNutrition].isValid shouldBe true
       }
