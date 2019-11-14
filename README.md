@@ -9,7 +9,8 @@ Test
 
 Run
 ---
-1. sbt run
+>Run app locally, with optional host and port args, which default to: host = 127.0.0.1, port = 7979
+1. sbt "run localhost 7676" | sbt run
 
 Package
 -------
