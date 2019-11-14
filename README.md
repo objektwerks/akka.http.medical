@@ -25,5 +25,5 @@ Deploy
 3. chmod +x ./bin/bh-rest-cerner
 4. ./bin/bh-rest-cerner & | ./bin/bh-rest-cerner myhost 7272 &
 5. note pid
-6. read log at ./bin/target/*.txt
+6. read log at ./bh.rest.cerner.log.${timeStamp}.txt
 7. kill pid

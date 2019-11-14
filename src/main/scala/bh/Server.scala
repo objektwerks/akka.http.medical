@@ -25,7 +25,7 @@ object Server {
     Http()
       .bindAndHandle(router.api, host, port)
       .map { server =>
-        logger.info(s"*** Server host: ${server.localAddress.toString}")
+        logger.info(s"*** Server: ${server.localAddress.toString}")
       }
 
     sys.addShutdownHook {

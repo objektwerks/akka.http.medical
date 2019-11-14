@@ -1,8 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration>
     <timestamp key="timeStamp" datePattern="yyyyMMdd'T'HHmm"/>
+    <appender name="console" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%X{akkaTimestamp} %-5level %logger{36} %X{akkaSource} - %msg%n</pattern>
+        </encoder>
+    </appender>
     <appender name="file" class="ch.qos.logback.core.FileAppender">
-        <file>./target/output/logs/test.${timeStamp}.txt</file>
+        <file>./target/test.${timeStamp}.txt</file>
         <append>true</append>
         <encoder>
             <pattern>%X{akkaTimestamp} %-5level %logger{36} %X{akkaSource} - %msg%n</pattern>
@@ -10,5 +15,8 @@
     </appender>
     <root level="DEBUG">
         <appender-ref ref="file"/>
+    </root>
+    <root level="INFO">
+        <appender-ref ref="console"/>
     </root>
 </configuration>
