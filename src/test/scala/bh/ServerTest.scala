@@ -40,7 +40,6 @@ class ServerTest extends WordSpec with Matchers with ScalatestRouteTest  {
         val json = responseAs[String]
         logger.info(s"*** ServerTest json: $json")
         val dietNutritions = read[List[DietNutrition]](json)
-        logger.info(s"*** ServerTest list: $dietNutritions")
         dietNutritions foreach { dn => assert(dn.isValid) }
       }
     }
