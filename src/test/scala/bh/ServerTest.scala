@@ -34,7 +34,7 @@ class ServerTest extends WordSpec with Matchers with ScalatestRouteTest  {
   import upickle.default._
 
   "getDietNutritionById" should {
-    "list diet nutrition" in {
+    "listDietNutritionById" in {
       Get(conf.getString("rest.url")) ~> router.api ~> check {
         status shouldBe StatusCodes.OK
         val json = responseAs[String]
