@@ -17,7 +17,7 @@ class Store(conf: Config) {
   ConnectionPool.singleton(url, user, password)
   logger.info(s"*** Store: Connected to Oracle store ( $url ).")
 
-  def findDietNutritionByPatientEncounterId(patiendId: Long, encounterId: Long): Future[Option[DietNutrition]] = DB readOnly { implicit session =>
+  def findDietNutritionByPatientEncounterId(patientId: Long, encounterId: Long): Future[Option[DietNutrition]] = DB readOnly { implicit session =>
     val result = sql"""
                    select PERSON_ID as Patient,
                    ENCNTR_ID as Encounter,
@@ -26,7 +26,7 @@ class Store(conf: Config) {
       from V500.ORDERS
       where ACTIVITY_TYPE_CD = 681598
       and CATALOG_TYPE_CD = 2511
-      and PERSON_ID = $patiendId
+      and PERSON_ID = $patientId
       and ENCNTR_ID = $encounterId
       and ACTIVE_IND = 1
       """

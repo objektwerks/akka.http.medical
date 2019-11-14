@@ -10,6 +10,7 @@ class Router(store: Store) {
 
   val getDietNutrition = path(LongNumber / LongNumber) { (patientId, encounterId) =>
     get {
+      logger.info(s"*** getDietNutrition: { patientId: $patientId encounterId: $encounterId }")
       onSuccess(store.findDietNutritionByPatientEncounterId(patientId, encounterId)) {
         case Some(dietNutrition) =>
           logger.info(s"*** getDietNutrition: $dietNutrition")
