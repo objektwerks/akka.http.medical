@@ -8,6 +8,7 @@ import org.slf4j.LoggerFactory
 
 import scala.concurrent.Await
 import scala.concurrent.duration._
+import scala.util.Try
 
 object Server {
   def main(args: Array[String]): Unit = {
@@ -19,8 +20,8 @@ object Server {
 
     val store = Store(conf)
     val router = Router(store)
-    val host = conf.getString("server.host")
-    val port = conf.getInt("server.port")
+    val host = Try(args(0)).getOrElse(conf.getString("server.host"))
+    val port = Try(args(1).toInt).getOrElse(conf.getInt("server.port"))
     Http()
       .bindAndHandle(router.api, host, port)
       .map { server =>
