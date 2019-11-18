@@ -28,3 +28,8 @@ Deploy
 6. note pid
 7. read log at ./bh.rest.cerner.log.${timeStamp}.txt
 8. kill pid
+
+Curl
+----
+1. curl http://127.0.0.1:7979/api/v1/diet/19106271/74798395
+2. view json
