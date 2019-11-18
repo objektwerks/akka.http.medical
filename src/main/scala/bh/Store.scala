@@ -17,7 +17,7 @@ class Store(conf: Config) {
   ConnectionPool.singleton(url, user, password)
   logger.info(s"*** Store: Connected to Oracle store ( $url ).")
 
-  def listDietNutritionById(patientId: Long, encounterId: Long): Future[List[DietNutrition]] = DB readOnly { implicit session =>
+  def listDietById(patientId: Long, encounterId: Long): Future[List[Diet]] = DB readOnly { implicit session =>
     val result = sql"""
                    select PERSON_ID as Patient,
                    ENCNTR_ID as Encounter,
@@ -30,7 +30,7 @@ class Store(conf: Config) {
       and ENCNTR_ID = $encounterId
       and ACTIVE_IND = 1
       """
-      .map(rs => DietNutrition(rs.long("Patient"), rs.long("Encounter"), rs.string("Status"), rs.string("Diet")))
+      .map(rs => Diet(rs.long("Patient"), rs.long("Encounter"), rs.string("Status"), rs.string("Diet")))
       .list
       .apply
     Future.successful(result)

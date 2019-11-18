@@ -11,19 +11,19 @@ import scala.util.{Failure, Success}
 class Router(store: Store) {
   val logger = LoggerFactory.getLogger(getClass)
 
-  val getDietNutritionById = path(LongNumber / LongNumber) { (patientId, encounterId) =>
-    logger.info(s"*** getDietNutritionById: { patientId: $patientId encounterId: $encounterId }")
-    onComplete(store.listDietNutritionById(patientId, encounterId)) {
-      case Success(dietNutritions) =>
-        logger.info(s"*** getDietNutritionById: $dietNutritions")
-        complete(OK -> write[List[DietNutrition]](dietNutritions))
+  val getDietById = path(LongNumber / LongNumber) { (patientId, encounterId) =>
+    logger.info(s"*** getDietById: { patientId: $patientId encounterId: $encounterId }")
+    onComplete(store.listDietById(patientId, encounterId)) {
+      case Success(diet) =>
+        logger.info(s"*** getDietById: $diet")
+        complete(OK -> write[List[Diet]](diet))
       case Failure(error) =>
-        logger.error(s"*** getDietNutritionById: ${error.getMessage}")
+        logger.error(s"*** getDietById: ${error.getMessage}")
         complete(BadRequest)
     }
   }
-  val api = pathPrefix("api" / "v1" / "dietnutrition") {
-    getDietNutritionById
+  val api = pathPrefix("api" / "v1" / "diet") {
+    getDietById
   }
 }
 
