@@ -7,5 +7,5 @@ case class Diet(patientId: Long, encounterId: Long, status: String, diet: String
 object Diet {
   import upickle.default._
 
-  implicit val dietNutritionRW: ReadWriter[Diet] = macroRW
+  implicit val dietRW: ReadWriter[Diet] = macroRW
 }
