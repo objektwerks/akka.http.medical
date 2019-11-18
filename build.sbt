@@ -2,7 +2,7 @@ enablePlugins(JavaAppPackaging)
 
 name := "bh.rest.cerner"
 organization := "bh"
-version := "0.1-SNAPSHOT"
+version := "0.1"
 scalaVersion := "2.12.10"
 libraryDependencies ++= {
   val akkaVersion = "2.5.25"
