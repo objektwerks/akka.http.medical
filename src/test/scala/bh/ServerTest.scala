@@ -27,20 +27,21 @@ class ServerTest extends WordSpec with Matchers with ScalatestRouteTest  {
   Http()
     .bindAndHandle(router.api, host, port)
     .map { server =>
-      logger.info(s"*** ServerTest host: ${server.localAddress.toString}")
+      logger.info(s"*** Test Server: ${server.localAddress.toString}")
     }
 
   import Upickle._
   import upickle.default._
 
   "getDietById" should {
-    "listDietById" in {
+    "return diet json" in {
       Get(conf.getString("rest.url")) ~> router.api ~> check {
         status shouldBe StatusCodes.OK
         val json = responseAs[String]
-        logger.info(s"*** ServerTest json: $json")
+        logger.info(s"*** ServerTest: getDietById > $json")
         val diets = read[List[Diet]](json)
-        diets foreach { dn => assert(dn.isValid) }
+        diets.nonEmpty shouldBe true
+        diets foreach { diet => assert(diet.isValid) }
       }
     }
   }

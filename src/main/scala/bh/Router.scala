@@ -12,14 +12,13 @@ class Router(store: Store) {
   val logger = LoggerFactory.getLogger(getClass)
 
   val getDietById = path(LongNumber / LongNumber) { (patientId, encounterId) =>
-    logger.info(s"*** getDietById: { patientId: $patientId encounterId: $encounterId }")
+    logger.debug(s"*** Router: getDietById / patientId: $patientId / encounterId: $encounterId")
     onComplete(store.listDietById(patientId, encounterId)) {
-      case Success(diet) =>
-        logger.info(s"*** getDietById: $diet")
-        complete(OK -> write[List[Diet]](diet))
+      case Success(diets) => complete(OK -> write[List[Diet]](diets))
       case Failure(error) =>
-        logger.error(s"*** getDietById: ${error.getMessage}")
-        complete(BadRequest)
+        val message = error.getMessage
+        logger.error(s"*** Router: getDietById > $message")
+        complete(BadRequest -> message)
     }
   }
   val api = pathPrefix("api" / "v1" / "diet") {
