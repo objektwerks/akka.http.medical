@@ -20,10 +20,11 @@ Package
 Deploy
 ------
 >Run app default host ( 127.0.0.1 ) and port ( 7979 ). Or pass in host and port.
-1. unpack bh-rest-cerner-0.1-SNAPSHOT.tgz
-2. cd to app root directory
-3. chmod +x ./bin/bh-rest-cerner
-4. ./bin/bh-rest-cerner & | ./bin/bh-rest-cerner myhost 7272 &
-5. note pid
-6. read log at ./bh.rest.cerner.log.${timeStamp}.txt
-7. kill pid
+1. copy / paste ./bh.rest.cerner/target/universal/bh-rest-cerner-0.1.tgz to target directory
+2. unpack bh-rest-cerner-0.1.tgz
+3. cd to app root directory
+4. chmod +x ./bin/bh-rest-cerner
+5. ./bin/bh-rest-cerner & | ./bin/bh-rest-cerner myhost 7272 &
+6. note pid
+7. read log at ./bh.rest.cerner.log.${timeStamp}.txt
+8. kill pid
