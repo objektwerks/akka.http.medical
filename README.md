@@ -19,13 +19,15 @@ Package
 
 Dev
 ---
->**Hosts:** dduxbdca1t OR dduxbdca2t **Location:** /mapr/MapR-Test/dw_apps/bh-rest-cerner
+* **Hosts:** dduxbdca1t OR dduxbdca2t
+* **Location:** /mapr/MapR-Test/dw_apps/bh-rest-cerner
 1. scp bh-rest-cerner-0.1.tgz mapr@dduxbdca1t:/mapr/MapR-Test/dw_apps/bh-rest-cerner qmhSp7Gd&wqm52
 2. curl -i http://dduxbdca1t:7272/api/v1/diet/19106271/74798395
 
 Prod
 ----
->**Hosts:** dduxbdca1p OR dduxbdca2p **Location:** /mapr/MapR-Prod/dw_apps/bh-rest-cerner
+* **Hosts:** dduxbdca1p OR dduxbdca2p
+* **Location:** /mapr/MapR-Prod/dw_apps/bh-rest-cerner
 1. curl -i http://dduxbdca1t:7272/api/v1/diet/19106271/74798395
 
 Deploy
