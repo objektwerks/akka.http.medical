@@ -38,4 +38,4 @@ SCP
 ---
 >Host 1: dduxbdca1t
 >Host 2: dduxbdca2t
-
+>scp bh-rest-cerner-0.1.tgz mapr@dduxbdca1t:/mapr/MapR-Test/dw_apps/bh-rest-cerner qmhSp7Gd&wqm52
