@@ -31,11 +31,16 @@ Deploy
 
 Curl
 ----
+>Note host and port values!
 1. curl -i http://127.0.0.1:7979/api/v1/diet/19106271/74798395
 2. view json
 
 SCP
 ---
->Host 1: dduxbdca1t
->Host 2: dduxbdca2t
->scp bh-rest-cerner-0.1.tgz mapr@dduxbdca1t:/mapr/MapR-Test/dw_apps/bh-rest-cerner qmhSp7Gd&wqm52
+>Host 1: dduxbdca1t Host 2: dduxbdca2t
+1. scp bh-rest-cerner-0.1.tgz mapr@dduxbdca1t:/mapr/MapR-Test/dw_apps/bh-rest-cerner qmhSp7Gd&wqm52
+
+Development
+-----------
+>Development server.
+1. curl -i http://dduxbdca1t:7272/api/v1/diet/19106271/74798395
