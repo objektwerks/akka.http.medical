@@ -37,7 +37,8 @@ Curl
 
 SCP
 ---
->Host 1: dduxbdca1t Host 2: dduxbdca2t
+>Test Host 1: dduxbdca1t Host 2: dduxbdca2t Disk: /mapr/MapR-Test/dw_apps/bh-rest-cerner
+>>Prod Host 1: dduxbdca1p Host 2: dduxbdca2p Disk: /mapr/MapR-Prod/dw_apps/bh-rest-cerner
 1. scp bh-rest-cerner-0.1.tgz mapr@dduxbdca1t:/mapr/MapR-Test/dw_apps/bh-rest-cerner qmhSp7Gd&wqm52
 
 Development
