@@ -33,3 +33,9 @@ Curl
 ----
 1. curl -i http://127.0.0.1:7979/api/v1/diet/19106271/74798395
 2. view json
+
+SCP
+---
+>Host 1: dduxbdca1t
+>Host 2: dduxbdca2t
+
