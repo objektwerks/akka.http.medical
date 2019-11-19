@@ -45,5 +45,5 @@ Deploy
 Curl
 ----
 >**Note** host and port values!
-1. curl -i http://127.0.0.1:7272/api/v1/diet/19106271/74798395
+1. curl -i http://dduxbdca1t:7272/api/v1/diet/19106271/74798395
 2. view json, ignoring back slashes
