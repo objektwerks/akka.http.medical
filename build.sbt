@@ -1,7 +1,7 @@
 enablePlugins(JavaAppPackaging)
 
-name := "bh.rest.cerner"
-organization := "bh"
+name := "akka.http.medical"
+organization := "objektwerks"
 version := "0.1"
 scalaVersion := "2.12.10"
 libraryDependencies ++= {
