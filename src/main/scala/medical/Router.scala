@@ -1,4 +1,4 @@
-package bh
+package medical
 
 import akka.http.scaladsl.model.StatusCodes._
 import akka.http.scaladsl.server.Directives._

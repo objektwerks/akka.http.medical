@@ -1,4 +1,4 @@
-package bh
+package medical
 
 import com.typesafe.config.Config
 import org.slf4j.LoggerFactory
