@@ -3,23 +3,23 @@ enablePlugins(JavaAppPackaging)
 name := "akka.http.medical"
 organization := "objektwerks"
 version := "0.1"
-scalaVersion := "2.12.10"
+scalaVersion := "2.12.11"
 libraryDependencies ++= {
-  val akkaVersion = "2.5.25"
-  val akkkHttpVersion = "10.1.10"
+  val akkaVersion = "2.6.4"
+  val akkkHttpVersion = "10.1.11"
   Seq(
     "com.typesafe.akka" %% "akka-actor" % akkaVersion,
     "com.typesafe.akka" %% "akka-slf4j" % akkaVersion,
     "com.typesafe.akka" %% "akka-http" % akkkHttpVersion,
     "com.typesafe.akka" %% "akka-stream" % akkaVersion,
-    "de.heikoseeberger" %% "akka-http-upickle" % "1.29.1",
+    "de.heikoseeberger" %% "akka-http-upickle" % "1.30.0",
     "org.scalikejdbc" %% "scalikejdbc" % "3.4.0",
     "com.oracle.ojdbc" % "ojdbc8" % "19.3.0.0",
-    "com.lihaoyi" %% "upickle" % "0.8.0",
-    "com.typesafe" % "config" % "1.3.4",
+    "com.lihaoyi" %% "upickle" % "1.0.0",
+    "com.typesafe" % "config" % "1.4.0",
     "ch.qos.logback" % "logback-classic" % "1.2.3",
     "com.typesafe.akka" %% "akka-testkit" % akkaVersion % Test,
     "com.typesafe.akka" %% "akka-http-testkit" % akkkHttpVersion % Test,
-    "org.scalatest" %% "scalatest" % "3.0.8" % Test
+    "org.scalatest" %% "scalatest" % "3.1.1" % Test
   )
 }

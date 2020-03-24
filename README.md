@@ -1,7 +1,7 @@
 Akka Http Medical
 -----------------
 >This project exports an Akka Http REST service that selects diet data from a medical database based on
->patient and encouter id values.
+>patient and encounter id values.
 
 Test
 ----
