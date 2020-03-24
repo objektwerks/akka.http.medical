@@ -1,10 +1,9 @@
 package medical
 
-import java.io.InputStream
 import java.security.{KeyStore, SecureRandom}
 
 import akka.actor.ActorSystem
-import akka.http.scaladsl.{ConnectionContext, Http, HttpsConnectionContext}
+import akka.http.scaladsl.{ConnectionContext, Http}
 import com.typesafe.config.ConfigFactory
 import javax.net.ssl.{KeyManagerFactory, SSLContext, TrustManagerFactory}
 import org.slf4j.LoggerFactory
@@ -20,24 +19,26 @@ object Server {
     implicit val system = ActorSystem.create(conf.getString("server.name"), conf.getConfig("akka"))
     implicit val dispatcher = system.dispatcher
 
-    val password: Array[Char] = conf.getString("passphrase").toCharArray
-    val keystore: KeyStore = KeyStore.getInstance("PKCS12")
-    val serverKey: InputStream = getClass.getClassLoader.getResourceAsStream("/server.key")
+    val keystore = KeyStore.getInstance("PKCS12")
+    val serverKey = getClass.getClassLoader.getResourceAsStream("/server.key")
+    val password = conf.getString("passphrase").toCharArray
     keystore.load(serverKey, password)
-    val keyManagerFactory: KeyManagerFactory = KeyManagerFactory.getInstance("SunX509")
+
+    val keyManagerFactory = KeyManagerFactory.getInstance("SunX509")
     keyManagerFactory.init(keystore, password)
-    val trustManagerFactory: TrustManagerFactory = TrustManagerFactory.getInstance("SunX509")
+
+    val trustManagerFactory = TrustManagerFactory.getInstance("SunX509")
     trustManagerFactory.init(keystore)
-    val sslContext: SSLContext = SSLContext.getInstance("TLS")
+
+    val sslContext = SSLContext.getInstance("TLS")
     sslContext.init(keyManagerFactory.getKeyManagers, trustManagerFactory.getTrustManagers, new SecureRandom)
-    val https: HttpsConnectionContext = ConnectionContext.https(sslContext)
 
     val store = Store(conf)
     val router = Router(store)
     val host = Try(args(0)).getOrElse(conf.getString("server.host"))
     val port = Try(args(1).toInt).getOrElse(conf.getInt("server.port"))
     Http()
-      .bindAndHandle(router.api, host, port, connectionContext = https)
+      .bindAndHandle(router.api, host, port, connectionContext = ConnectionContext.https(sslContext))
       .map { server =>
         logger.info(s"*** Server: ${server.localAddress.toString}")
       }
