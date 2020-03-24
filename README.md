@@ -16,6 +16,9 @@ SSL Artifacts
 2. server.csr
 3. server.key
 
+Https
+-----
+>See ( https://doc.akka.io/docs/akka-http/current/server-side/server-https-support.html#using-https ) for details.
 Test
 ----
 1. sbt clean test
