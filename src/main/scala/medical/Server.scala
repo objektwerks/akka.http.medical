@@ -24,7 +24,6 @@ object Server {
     val password: Array[Char] = "bhsf".toCharArray
     val keystore: KeyStore = KeyStore.getInstance("PKCS12")
     val serverKey: InputStream = getClass.getClassLoader.getResourceAsStream("/server.key")
-    require(serverKey != null, "Keystore required!")
     keystore.load(serverKey, password)
     val keyManagerFactory: KeyManagerFactory = KeyManagerFactory.getInstance("SunX509")
     keyManagerFactory.init(keystore, password)
