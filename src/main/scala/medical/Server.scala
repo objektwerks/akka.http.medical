@@ -20,8 +20,7 @@ object Server {
     implicit val system = ActorSystem.create(conf.getString("server.name"), conf.getConfig("akka"))
     implicit val dispatcher = system.dispatcher
 
-
-    val password: Array[Char] = "bhsf".toCharArray
+    val password: Array[Char] = conf.getString("passphrase").toCharArray
     val keystore: KeyStore = KeyStore.getInstance("PKCS12")
     val serverKey: InputStream = getClass.getClassLoader.getResourceAsStream("/server.key")
     keystore.load(serverKey, password)
