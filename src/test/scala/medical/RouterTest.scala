@@ -15,7 +15,7 @@ import scala.language.postfixOps
 
 class RouterTest extends AnyWordSpec with Matchers with ScalatestRouteTest  {
   val logger = LoggerFactory.getLogger(getClass)
-  val conf = ConfigFactory.load("test.server.conf")
+  val conf = ConfigFactory.load("router.conf")
   val actorRefFactory = ActorSystem.create(conf.getString("server.name"), conf.getConfig("akka"))
   implicit val dispatcher = system.dispatcher
   implicit val timeout = RouteTestTimeout(10.seconds dilated)
