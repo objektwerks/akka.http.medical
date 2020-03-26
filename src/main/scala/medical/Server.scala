@@ -5,8 +5,7 @@ import akka.http.scaladsl.{ConnectionContext, Http}
 import com.typesafe.config.ConfigFactory
 import org.slf4j.LoggerFactory
 
-import scala.concurrent.Await
-import scala.concurrent.duration._
+import scala.io.StdIn
 import scala.util.Try
 
 object Server {
@@ -21,23 +20,22 @@ object Server {
     val host = Try(args(0)).getOrElse(conf.getString("server.host"))
     val port = Try(args(1).toInt).getOrElse(conf.getInt("server.port"))
     val sslContext = ConnectionContext.https(SSLContextFactory.newInstance(conf.getString("passphrase")))
-    Http()
+    val server = Http()
       .bindAndHandle(
         router.api,
         host,
         port,
         connectionContext = sslContext
       )
-      .map { server =>
-        logger.info(s"*** Server: ${server.localAddress.toString}")
-      }
 
-    sys.addShutdownHook {
-      logger.info("*** Server shutting down...")
-      system.terminate()
-      Await.result(system.whenTerminated, 30.seconds)
-      logger.info("*** Server shutdown.")
-    }
-    ()
+    logger.info(s"Server started at $host:$port/\nPress RETURN to stop...")
+
+    StdIn.readLine()
+    server
+      .flatMap(_.unbind)
+      .onComplete { _ =>
+        system.terminate
+        println("Server stopped.")
+      }
   }
 }
