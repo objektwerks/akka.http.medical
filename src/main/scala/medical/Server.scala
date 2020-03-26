@@ -19,7 +19,8 @@ object Server {
     val router = Router(store)
     val host = Try(args(0)).getOrElse(conf.getString("server.host"))
     val port = Try(args(1).toInt).getOrElse(conf.getInt("server.port"))
-    val sslContext = ConnectionContext.https(SSLContextFactory.newInstance(conf.getString("server.passphrase")))
+    val passphrase = conf.getString("server.passphrase")
+    val sslContext = ConnectionContext.https(SSLContextFactory.newInstance(passphrase))
     val server = Http()
       .bindAndHandle(
         router.api,
