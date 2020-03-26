@@ -12,14 +12,14 @@ object Server {
   def main(args: Array[String]): Unit = {
     val logger = LoggerFactory.getLogger(getClass)
     val conf = ConfigFactory.load("server.conf")
-    implicit val system = ActorSystem.create(conf.getString("server.name"), conf.getConfig("akka"))
+    implicit val system = ActorSystem.create(conf.getString("server.name"), conf)
     implicit val dispatcher = system.dispatcher
 
     val store = Store(conf)
     val router = Router(store)
     val host = Try(args(0)).getOrElse(conf.getString("server.host"))
     val port = Try(args(1).toInt).getOrElse(conf.getInt("server.port"))
-    val sslContext = ConnectionContext.https(SSLContextFactory.newInstance(conf.getString("passphrase")))
+    val sslContext = ConnectionContext.https(SSLContextFactory.newInstance(conf.getString("server.passphrase")))
     val server = Http()
       .bindAndHandle(
         router.api,
@@ -28,14 +28,14 @@ object Server {
         connectionContext = sslContext
       )
 
-    logger.info(s"Server started at $host:$port/\nPress RETURN to stop...")
+    logger.info(s"Server started at https://$host:$port/\nPress RETURN to stop...")
 
     StdIn.readLine()
     server
       .flatMap(_.unbind)
       .onComplete { _ =>
         system.terminate
-        println("Server stopped.")
+        logger.info("Server stopped.")
       }
   }
 }
