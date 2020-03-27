@@ -38,7 +38,7 @@ Run
 >Run app locally, with optional host and port args, which default to: host = 127.0.0.1, port = 7676
 1. sbt "run localhost 7676" **or** sbt run
 
-Curl
+Curl **Doesn't work!**
 ----
 * curl --capath ./src/main/resources \
        --cert-type PEM \
@@ -47,7 +47,7 @@ Curl
        --cert-status \
        -v https://localhost:7676//api/v1/diet/1/1
        
-WGet
+WGet **Doesn't work!**
 ----
 * wget --certificate=./src/main/resources/server.pem \
         --certificate-type=PEM \
