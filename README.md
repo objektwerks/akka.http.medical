@@ -40,7 +40,12 @@ Run
 
 Curl
 ----
-* curl --cacert ./src/main/resources/server.pem -v https://localhost:7676/api/v1/now
+* curl --capath ./src/main/resources \
+       --cert-type PEM \
+       --cert ./src/main/resources/server.pem:test \
+       --cacert ./src/main/resources/server.pem \
+       --cert-status \
+       -v https://localhost:7676/api/v1/now
 
 Package
 -------
