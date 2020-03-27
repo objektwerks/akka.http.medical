@@ -22,8 +22,9 @@ object Server {
     val passphrase = conf.getString("server.passphrase")
     val sslContext = SSLContextFactory.newInstance(passphrase)
     val httpsContext = ConnectionContext.https(sslContext)
-    Http().setDefaultClientHttpsContext(httpsContext)
-    val server = Http()
+    val http = Http()
+    http.setDefaultClientHttpsContext(httpsContext)
+    val server = http
       .bindAndHandle(
         router.api,
         host,
@@ -31,7 +32,7 @@ object Server {
         connectionContext = httpsContext
       )
 
-    logger.info(s"Server started at https://$host:$port/\nPress RETURN to stop...")
+    logger.info(s"*** Server started at https://$host:$port/\nPress RETURN to stop...")
 
     StdIn.readLine()
     server
