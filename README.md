@@ -11,8 +11,10 @@ SSL
 
 SSL Passwords
 -------------
-1. Server Key Passphrase: bhsf
-2. Challenge Password: doctorZ
+1. Server Key Passphrase: test
+2. Challenge Password: test
+3. Server PEM: test
+4. Export Password: test
 
 SSL Artifacts
 -------------
@@ -20,6 +22,8 @@ SSL Artifacts
 1. server.crt
 2. server.csr
 3. server.key
+4. server.pem
+5. keystore.pkcs12
 
 Https
 -----
