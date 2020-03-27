@@ -20,13 +20,15 @@ object Server {
     val host = Try(args(0)).getOrElse(conf.getString("server.host"))
     val port = Try(args(1).toInt).getOrElse(conf.getInt("server.port"))
     val passphrase = conf.getString("server.passphrase")
-    val sslContext = ConnectionContext.https(SSLContextFactory.newInstance(passphrase))
+    val sslContext = SSLContextFactory.newInstance(passphrase)
+    val httpsConnection = ConnectionContext.https(sslContext)
+    Http().setDefaultServerHttpContext(httpsConnection)
     val server = Http()
       .bindAndHandle(
         router.api,
         host,
         port,
-        connectionContext = sslContext
+        connectionContext = httpsConnection
       )
 
     logger.info(s"Server started at https://$host:$port/\nPress RETURN to stop...")
