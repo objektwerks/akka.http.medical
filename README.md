@@ -40,20 +40,19 @@ Run
 
 Curl **Doesn't work!**
 ----
-* curl --capath ./src/main/resources \
+* curl --cacert /private/etc/ssl/cert.pem \
+       --capath /private/etc/ssl \
        --cert-type PEM \
        --cert ./src/main/resources/server.pem:test \
-       --cacert ./src/main/resources/server.pem \
-       --cert-status \
        -v https://localhost:7676/api/v1/diet/1/1
        
 WGet **Doesn't work!**
 ----
-* wget --certificate=./src/main/resources/server.pem \
-        --certificate-type=PEM \
-        --ca-certificate=./src/main/resources/server.crt \
-        --ca-directory=./src/main/resources \
-        https://localhost:7676/api/v1/diet/1/1
+* wget --ca-certificate=/private/etc/ssl/cert.pem \
+       --ca-directory=/private/etc/ssl \
+       --certificate-type=PEM \
+       --certificate=./src/main/resources/server.pem \
+       https://localhost:7676/api/v1/diet/1/1
 
 Package
 -------
