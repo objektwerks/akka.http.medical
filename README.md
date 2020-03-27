@@ -45,7 +45,15 @@ Curl
        --cert ./src/main/resources/server.pem:test \
        --cacert ./src/main/resources/server.pem \
        --cert-status \
-       -v https://localhost:7676/api/v1/now
+       -v https://localhost:7676//api/v1/diet/1/1
+       
+WGet
+----
+* wget --certificate=./src/main/resources/server.pem \
+        --certificate-type=PEM \
+        --ca-certificate=./src/main/resources/server.crt \
+        --ca-directory=./src/main/resources \
+        https://localhost:7676//api/v1/diet/1/1
 
 Package
 -------
