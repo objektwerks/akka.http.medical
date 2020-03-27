@@ -43,7 +43,7 @@ Curl **Doesn't work!**
 * curl --cacert /etc/ssl/cert.pem \
        --capath /etc/ssl/ \
        --cert-type PEM \
-       --cert ./src/main/resources/server.pem:test \
+       --cert /etc/ssl/server.pem:test \
        -v https://localhost:7676/api/v1/diet/1/1
        
 WGet **Doesn't work!**
@@ -51,7 +51,7 @@ WGet **Doesn't work!**
 * wget --ca-certificate=/etc/ssl/cert.pem \
        --ca-directory=/etc/ssl/ \
        --certificate-type=PEM \
-       --certificate=./src/main/resources/server.pem \
+       --certificate=/etc/ssl/server.pem \
        https://localhost:7676/api/v1/diet/1/1
 
 Package
