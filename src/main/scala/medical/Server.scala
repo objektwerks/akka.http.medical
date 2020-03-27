@@ -22,7 +22,7 @@ object Server {
     val passphrase = conf.getString("server.passphrase")
     val sslContext = SSLContextFactory.newInstance(passphrase)
     val httpsContext = ConnectionContext.https(sslContext)
-    Http().setDefaultServerHttpContext(httpsContext)
+    Http().setDefaultClientHttpsContext(httpsContext)
     val server = Http()
       .bindAndHandle(
         router.api,
