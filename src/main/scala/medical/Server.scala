@@ -3,17 +3,16 @@ package medical
 import akka.actor.ActorSystem
 import akka.http.scaladsl.{ConnectionContext, Http}
 import com.typesafe.config.ConfigFactory
-import org.slf4j.LoggerFactory
 
 import scala.io.StdIn
 import scala.util.Try
 
 object Server {
   def main(args: Array[String]): Unit = {
-    val logger = LoggerFactory.getLogger(getClass)
     val conf = ConfigFactory.load("server.conf")
     implicit val system = ActorSystem.create(conf.getString("server.name"), conf)
     implicit val dispatcher = system.dispatcher
+    val logger = system.log
 
     val store = Store(conf)
     val router = Router(store)
