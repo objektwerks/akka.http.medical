@@ -5,7 +5,12 @@ Akka Http Medical
 
 SSL
 ---
->See ( https://blog.knoldus.com/create-a-self-signed-ssl-certificate-using-openssl/ ) for directions.
+>See:
+1. https://blog.knoldus.com/create-a-self-signed-ssl-certificate-using-openssl/
+2. https://blog.knoldus.com/how-to-create-a-keystore-in-pkcs12-format/
+
+SSL Passwords
+-------------
 1. Server Key Passphrase: bhsf
 2. Challenge Password: doctorZ
 
