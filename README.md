@@ -40,16 +40,16 @@ Run
 
 Curl **Doesn't work!**
 ----
-* curl --cacert /private/etc/ssl/cert.pem \
-       --capath /private/etc/ssl \
+* curl --cacert /etc/ssl/cert.pem \
+       --capath /etc/ssl/ \
        --cert-type PEM \
        --cert ./src/main/resources/server.pem:test \
        -v https://localhost:7676/api/v1/diet/1/1
        
 WGet **Doesn't work!**
 ----
-* wget --ca-certificate=/private/etc/ssl/cert.pem \
-       --ca-directory=/private/etc/ssl \
+* wget --ca-certificate=/etc/ssl/cert.pem \
+       --ca-directory=/etc/ssl/ \
        --certificate-type=PEM \
        --certificate=./src/main/resources/server.pem \
        https://localhost:7676/api/v1/diet/1/1
