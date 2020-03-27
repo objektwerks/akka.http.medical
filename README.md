@@ -38,6 +38,10 @@ Run
 >Run app locally, with optional host and port args, which default to: host = 127.0.0.1, port = 7676
 1. sbt "run localhost 7676" **or** sbt run
 
+Curl
+----
+* curl --cacert ./src/main/resources/server.pem -v https://localhost:7676/api/v1/now
+
 Package
 -------
 >Using https://sbt-native-packager.readthedocs.io/en/stable/
