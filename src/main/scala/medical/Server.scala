@@ -1,12 +1,11 @@
 package medical
 
 import akka.actor.ActorSystem
-import akka.http.scaladsl.model.HttpRequest
 import akka.http.scaladsl.{ConnectionContext, Http}
 import com.typesafe.config.ConfigFactory
 
 import scala.io.StdIn
-import scala.util.{Failure, Success, Try}
+import scala.util.Try
 
 object Server {
   def main(args: Array[String]): Unit = {
@@ -32,16 +31,6 @@ object Server {
         connectionContext = httpsContext
       )
     logger.info(s"*** Server started at https://$host:$port/\nPress RETURN to stop...")
-
-    val client = Http()
-    client.setDefaultClientHttpsContext(httpsContext)
-    val service = conf.getString("server.service")
-    val future = client.singleRequest(HttpRequest(uri = s"https://$host:$port$service"))
-    future
-      .onComplete {
-        case Success(diet) => logger.info(s"*** Diet is: $diet")
-        case Failure(error) => logger.error(s"*** Diet service failed: ${error.toString}")
-      }
 
     StdIn.readLine()
     server
