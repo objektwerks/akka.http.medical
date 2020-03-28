@@ -38,20 +38,20 @@ Run
 >Run app locally, with optional host and port args, which default to: host = 127.0.0.1, port = 7676
 1. sbt "run localhost 7676" **or** sbt run
 
-Curl **Doesn't work!**
+Curl
 ----
-* curl --cacert /etc/ssl/cert.pem \
-       --capath /etc/ssl/ \
+* curl --cacert /usr/local/etc/openssl@1.1/cert.pem \
+       --capath /usr/local/etc/openssl@1.1/certs \
        --cert-type PEM \
-       --cert /etc/ssl/server.pem:test \
+       --cert /usr/local/etc/openssl@1.1/certs/server.pem:test \
        -v https://localhost:7676/api/v1/diet/1/1
        
-WGet **Doesn't work!**
+WGet
 ----
-* wget --ca-certificate=/etc/ssl/cert.pem \
-       --ca-directory=/etc/ssl/ \
+* wget --ca-certificate=/usr/local/etc/openssl@1.1/cert.pem \
+       --ca-directory=/usr/local/etc/openssl@1.1/certs \
        --certificate-type=PEM \
-       --certificate=/etc/ssl/server.pem \
+       --certificate=/usr/local/etc/openssl@1.1/certs/server.pem \
        https://localhost:7676/api/v1/diet/1/1
 
 Package
