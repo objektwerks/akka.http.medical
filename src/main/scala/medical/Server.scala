@@ -35,7 +35,8 @@ object Server {
 
     val client = Http()
     client.setDefaultClientHttpsContext(httpsContext)
-    val future = client.singleRequest(HttpRequest(uri = s"https://$host:$port/api/v1/diet/1/1"))
+    val service = conf.getString("server.service")
+    val future = client.singleRequest(HttpRequest(uri = s"https://$host:$port$service"))
     future
       .onComplete {
         case Success(diet) => logger.info(s"*** Diet is: $diet")
