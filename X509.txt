@@ -1,4 +1,8 @@
+Configuration: For production, system enviroment variables ( i.e.,java -DHOST=abc.com -jar myapp.jar ) may be set.
+See: https://github.com/lightbend/config#optional-system-or-env-variable-overrides
+
 Host = localhost
+Port = 7676
 Password = password
 
 [ Create Server CA ]
