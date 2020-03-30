@@ -8,7 +8,9 @@ Https
 >For details see:
 1. https://doc.akka.io/docs/akka-http/current/server-side/server-https-support.html
 2. https://lightbend.github.io/ssl-config/CertificateGeneration.html
->Also see x509 text file and directory.
+>Also see:
+1. x509.txt
+2. x509 directory
 
 Test
 ----
