@@ -21,7 +21,7 @@ Run
 
 Curl
 ----
-1. curl http://localhost:7676/api/v1/now
+1. curl https://localhost:7676/api/v1/diet/1/1
 
 Package
 -------
