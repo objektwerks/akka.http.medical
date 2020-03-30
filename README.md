@@ -18,11 +18,12 @@ Test
 
 Run
 ---
->Run app locally, with optional host and port args, which default to: host = 127.0.0.1, port = 7676
+>Run app locally, with optional host and port args, which default to: host = localhost, port = 7676.
 1. sbt "run localhost 7676" **or** sbt run
 
 Curl
 ----
+>Run app and query rest service:
 1. curl https://localhost:7676/api/v1/diet/1/1
 
 Package
