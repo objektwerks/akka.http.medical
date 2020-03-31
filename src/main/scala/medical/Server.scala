@@ -35,6 +35,7 @@ object Server {
         port,
         connectionContext = httpsContext
       )
+    logger.info(s"*** SSL context conf: ${sslContextConf.toString}")
     logger.info(s"*** Server started at https://$host:$port/\nPress RETURN to stop...")
 
     StdIn.readLine()
