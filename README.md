@@ -18,8 +18,7 @@ Test
 
 Run
 ---
->Run app locally, with optional host and port args, which default to: host = localhost, port = 7676.
-1. sbt "run localhost 7676" **or** sbt run
+1. sbt run
 
 Curl
 ----

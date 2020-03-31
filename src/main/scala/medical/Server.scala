@@ -3,28 +3,28 @@ package medical
 import akka.actor.ActorSystem
 import akka.http.scaladsl.{ConnectionContext, Http}
 import com.typesafe.config.ConfigFactory
+import net.ceedubs.ficus.Ficus._
+import net.ceedubs.ficus.readers.ArbitraryTypeReader._
 
 import scala.io.StdIn
-import scala.util.Try
+
+case class ServerConf(name: String, host: String, port: Int) {
+  def tuple: (String, String, Int) = (name, host, port)
+}
 
 object Server {
   def main(args: Array[String]): Unit = {
     val conf = ConfigFactory.load("server.conf")
-    implicit val system = ActorSystem.create(conf.getString("server.name"), conf)
+    val (name, host, port) = conf.as[ServerConf]("server").tuple
+    val sslContextConf = conf.as[SSLContextConf]("ssl")
+
+    implicit val system = ActorSystem.create(name, conf)
     implicit val dispatcher = system.dispatcher
     val logger = system.log
 
     val store = Store(conf)
     val router = Router(store)
-    val host = Try(args(0)).getOrElse(conf.getString("server.host"))
-    val port = Try(args(1).toInt).getOrElse(conf.getInt("server.port"))
-    val passphrase = conf.getString("server.passphrase")
-    val keystorePath = conf.getString("server.keystore-path")
-    val keystoreType = conf.getString("server.keystore-type")
-    val sslContextProtocol = conf.getString("server.ssl-context-protocol")
-    val algorithm = conf.getString("server.algorithm")
-    val sslContextFactoryConf = SSLContextFactoryConf(passphrase, keystorePath, keystoreType, sslContextProtocol, algorithm)
-    val sslContext = SSLContextFactory.newInstance(sslContextFactoryConf)
+    val sslContext = SSLContextFactory.newInstance(sslContextConf)
     val httpsContext = ConnectionContext.https(sslContext)
     val http = Http()
     http.setDefaultClientHttpsContext(httpsContext)
