@@ -22,7 +22,7 @@ Run
 
 Run Extended
 ------------
->Run with optional system property args. See server.conf for **all** system properties with a ${?PROPERTY} format.
+>Run with optional system property args. See server.conf for **all** system properties with a ${?property} format.
 1. sbt "run -Dhost=127.0.0.1 -Dport=7443"
 
 Curl
