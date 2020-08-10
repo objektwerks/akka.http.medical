@@ -25,7 +25,8 @@ class RouterTest extends AnyWordSpec with Matchers with ScalatestRouteTest  {
   val host = conf.getString("server.host")
   val port = conf.getInt("server.port")
   Http()
-    .bindAndHandle(router.api, host, port)
+    .newServerAt(host, port)
+    .bindFlow(router.api)
     .map { server =>
       logger.info(s"*** Test Server: ${server.localAddress.toString}")
     }

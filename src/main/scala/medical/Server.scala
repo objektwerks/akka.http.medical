@@ -25,16 +25,12 @@ object Server {
     val store = Store(conf)
     val router = Router(store)
     val sslContext = SSLContextFactory.newInstance(sslContextConf)
-    val httpsContext = ConnectionContext.https(sslContext)
-    val http = Http()
-    http.setDefaultClientHttpsContext(httpsContext)
-    val server = http
-      .bindAndHandle(
-        router.api,
-        host,
-        port,
-        connectionContext = httpsContext
-      )
+    val httpsContext = ConnectionContext.httpsServer(sslContext)
+    val server = Http()
+      .newServerAt(host, port)
+      .enableHttps(httpsContext)
+      .bindFlow(router.api)
+
     logger.info(s"*** SSL context conf: ${sslContextConf.toString}")
     logger.info(s"*** Server started at https://$host:$port/\nPress RETURN to stop...")
 
