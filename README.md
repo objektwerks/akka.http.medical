@@ -30,7 +30,7 @@ Run
 Run Extended
 ------------
 >Run with optional system property args. See server.conf for **all** system properties with a ${?property} format.
-1. sbt "run -Dhost=127.0.0.1 -Dport=7443"
+1. sbt "run -Dconfig.override_with_env_vars=true -Dhost=127.0.0.1 -Dport=7443"
 
 Curl
 ----
@@ -41,3 +41,8 @@ Package
 -------
 >Using https://sbt-native-packager.readthedocs.io/en/stable/
 1. sbt universal:packageZipTarball | windows:packageBin
+
+Run
+---
+1. tar -xvzf ./target/universal/akka-http-medical-0.1.tgz -C ./target/universal
+2. sh ./target/universal/akka-http-medical-0.1/bin/akka-http-medical
