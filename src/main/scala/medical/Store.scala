@@ -1,7 +1,9 @@
 package medical
 
 import com.typesafe.config.Config
+
 import org.slf4j.LoggerFactory
+
 import scalikejdbc.{ConnectionPool, DB, scalikejdbcSQLInterpolationImplicitDef}
 
 import scala.concurrent.Future
@@ -31,8 +33,8 @@ class Store(conf: Config) {
       and ACTIVE_IND = 1
       """
       .map(rs => Diet(rs.long("Patient"), rs.long("Encounter"), rs.string("Status"), rs.string("Diet")))
-      .list
-      .apply
+      .list()
+      .apply()
     Future.successful(result)
   }
 }

@@ -2,8 +2,11 @@ package medical
 
 import akka.http.scaladsl.model.StatusCodes._
 import akka.http.scaladsl.server.Directives._
+
 import de.heikoseeberger.akkahttpupickle.UpickleSupport._
+
 import org.slf4j.LoggerFactory
+
 import upickle.default._
 
 import scala.util.{Failure, Success}

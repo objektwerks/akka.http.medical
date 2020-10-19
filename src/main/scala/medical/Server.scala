@@ -2,7 +2,9 @@ package medical
 
 import akka.actor.ActorSystem
 import akka.http.scaladsl.{ConnectionContext, Http}
+
 import com.typesafe.config.ConfigFactory
+
 import net.ceedubs.ficus.Ficus._
 import net.ceedubs.ficus.readers.ArbitraryTypeReader._
 
@@ -36,9 +38,9 @@ object Server {
 
     StdIn.readLine()
     server
-      .flatMap(_.unbind)
+      .flatMap(_.unbind())
       .onComplete { _ =>
-        system.terminate
+        system.terminate()
         logger.info("Server stopped.")
       }
   }
