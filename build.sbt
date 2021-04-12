@@ -15,7 +15,7 @@ libraryDependencies ++= {
     "de.heikoseeberger" %% "akka-http-upickle" % "1.36.0",
     "org.scalikejdbc" %% "scalikejdbc" % "3.5.0",
     "com.oracle.ojdbc" % "ojdbc8" % "19.3.0.0",
-    "com.lihaoyi" %% "upickle" % "1.2.3",
+    "com.lihaoyi" %% "upickle" % "1.3.11",
     "com.typesafe" % "config" % "1.4.0",
     "com.iheart" %% "ficus" % "1.5.0",
     "ch.qos.logback" % "logback-classic" % "1.2.3",
