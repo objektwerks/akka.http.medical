@@ -8,14 +8,16 @@ import akka.testkit.TestDuration
 
 import com.typesafe.config.ConfigFactory
 
+import org.scalatest.BeforeAndAfterAll
 import org.scalatest.matchers.should.Matchers
 import org.scalatest.wordspec.AnyWordSpec
 import org.slf4j.LoggerFactory
 
 import scala.concurrent.duration._
 import scala.language.postfixOps
+import scala.concurrent.Await
 
-class RouterTest extends AnyWordSpec with Matchers with ScalatestRouteTest  {
+class RouterTest extends AnyWordSpec with BeforeAndAfterAll with Matchers with ScalatestRouteTest  {
   val logger = LoggerFactory.getLogger(getClass)
   val conf = ConfigFactory.load("router.conf")
   val actorRefFactory = ActorSystem.create(conf.getString("server.name"), conf.getConfig("akka"))
@@ -26,12 +28,23 @@ class RouterTest extends AnyWordSpec with Matchers with ScalatestRouteTest  {
   val router = Router(store)
   val host = conf.getString("server.host")
   val port = conf.getInt("server.port")
-  Http()
+  val server = Http()
     .newServerAt(host, port)
     .bindFlow(router.api)
     .map { server =>
-      logger.info(s"*** Test Server: ${server.localAddress.toString}")
+      logger.info(s"*** Server started at: ${server.localAddress.toString}")
+      server
     }
+
+  override protected def afterAll(): Unit =
+    server
+      .flatMap(_.unbind())
+      .onComplete { _ =>
+        logger.info("*** Server shutting down...")
+        actorRefFactory.terminate()
+        Await.result(actorRefFactory.whenTerminated, 3.seconds)
+        logger.info("*** Server shutdown.")
+      }  
 
   import de.heikoseeberger.akkahttpupickle.{UpickleSupport => Upickle}
   import Upickle._
