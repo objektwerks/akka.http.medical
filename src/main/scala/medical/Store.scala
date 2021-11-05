@@ -34,7 +34,6 @@ class Store(conf: Config) {
       """
       .map(rs => Diet(rs.long("Patient"), rs.long("Encounter"), rs.string("Status"), rs.string("Diet")))
       .list()
-      .apply()
     Future.successful(result)
   }
 }
