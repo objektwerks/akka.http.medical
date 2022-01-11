@@ -12,7 +12,7 @@ libraryDependencies ++= {
     "com.typesafe.akka" %% "akka-slf4j" % akkaVersion,
     "com.typesafe.akka" %% "akka-http" % akkkHttpVersion,
     "com.typesafe.akka" %% "akka-stream" % akkaVersion,
-    "de.heikoseeberger" %% "akka-http-upickle" % "1.38.2",
+    "de.heikoseeberger" %% "akka-http-upickle" % "1.39.2",
     "com.typesafe" %% "ssl-config-core" % "0.6.0",
     "org.scalikejdbc" %% "scalikejdbc" % "4.0.0",
     "com.oracle.ojdbc" % "ojdbc8" % "19.3.0.0",
