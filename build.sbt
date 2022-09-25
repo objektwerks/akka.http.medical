@@ -3,7 +3,7 @@ enablePlugins(JavaAppPackaging)
 name := "akka.http.medical"
 organization := "objektwerks"
 version := "0.1"
-scalaVersion := "2.13.8"
+scalaVersion := "2.13.9"
 libraryDependencies ++= {
   val akkaVersion = "2.6.19"
   val akkkHttpVersion = "10.2.9"
