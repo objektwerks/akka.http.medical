@@ -17,7 +17,7 @@ libraryDependencies ++= {
     "org.scalikejdbc" %% "scalikejdbc" % "4.0.0",
     "com.oracle.ojdbc" % "ojdbc8" % "19.3.0.0",
     "com.lihaoyi" %% "upickle" % "3.1.3",
-    "com.typesafe" % "config" % "1.4.2",
+    "com.typesafe" % "config" % "1.4.3",
     "com.iheart" %% "ficus" % "1.5.2",
     "ch.qos.logback" % "logback-classic" % "1.4.14",
     "com.typesafe.akka" %% "akka-testkit" % akkaVersion % Test,
